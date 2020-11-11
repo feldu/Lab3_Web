@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+    <title>Lab Three</title>
+    <!--    Fucking order scripts fix starts-->
+    <f:facet name="first">
+        <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+        <h:outputScript library="primefaces" name="jquery/jquery-plugins.js"/>
+        <h:outputScript library="primefaces" name="core.js"/>
+        <h:outputScript library="primefaces" name="components.js"/>
+    </f:facet>
+    <!--    Fucking order scripts fix ends-->
+    <h:outputStylesheet library="css" name="start_page.css"/>
+</h:head>
+
+<h:body>
+    <h:panelGroup layout="block" styleClass="wrapper">
+        <h:panelGroup layout="block" styleClass="content">
+            <ui:include src="header.xhtml"/>
+            <h:panelGroup layout="block" styleClass="main_content">
+                <h1><h:link value="Сломать лабу" outcome="to_main_page"/></h1>
+                <h:panelGroup layout="block" styleClass="content_row">
+                    <h:panelGroup layout="block" styleClass="column">
+                        <h:form>
+                            <p:remoteCommand name="dateUpdater" update="clock"/>
+                        </h:form>
+                        <h:panelGroup layout="block" id="clock" styleClass="clock_block">
+                                <p class="date_style">Дата: <h:outputText value="#{dateBean.currentDate}"/></p>
+                                <p class="date_style">Время: <h:outputText value="#{dateBean.currentTime}"/></p>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                </h:panelGroup>
+            </h:panelGroup>
+            <footer>
+                <h:panelGroup layout="block" styleClass="footer_text">
+                    Санкт-Петербург<br/>
+                    Октябрь, 2020 год
+                </h:panelGroup>
+            </footer>
+        </h:panelGroup>
+    <h:outputScript library="js" name="updateDate.js"/>
+</h:body>
+</html>

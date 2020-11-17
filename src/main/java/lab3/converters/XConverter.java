@@ -1,8 +1,10 @@
 package lab3.converters;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 @FacesConverter("xConverter")
@@ -10,9 +12,14 @@ public class XConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (!value.isEmpty() && !value.matches(".*[a-z].*")) {
-            return Double.parseDouble(value.replace(',', '.'));
+            try {
+                return Double.parseDouble(value.replace(',', '.'));
+            } catch (NumberFormatException ignored) {
+            }
         }
-        return "";
+        throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                "Error: ",
+                "Shit convert"));
     }
 
     @Override

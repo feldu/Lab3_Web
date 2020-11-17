@@ -21,7 +21,7 @@ public class XValidator implements Validator, ClientValidator {
                         "Error: ",
                         "Shit length"));
             }
-            double xValue = Double.parseDouble(value.toString().replace(',', '.'));
+            double xValue = (double) value;
             if (xValue < -2.999 || xValue > 4.9999) {
                 throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
                         "Error: ",
